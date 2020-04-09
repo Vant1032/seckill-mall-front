@@ -113,7 +113,7 @@
                 var that = this;
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
-                        var form = that.ruleForm;
+                        const form = that.ruleForm;
                         axios.post('/user/signIn',{
                             userName: form.userName,
                             password: form.pass,

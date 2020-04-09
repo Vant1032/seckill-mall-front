@@ -22,6 +22,8 @@
 </template>
 
 <script>
+    import axios from "../../../utils/net";
+
     export default {
         name: 'LoginForm',
         data() {
@@ -62,11 +64,19 @@
         methods: {
 
             submitForm(formName) {
+                var that = this;
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
-                        alert('submit!');
+                        const form = that.ruleForm;
+                        axios.post('/user/login', {
+                            userName: form.userName,
+                            password: form.pass
+                        }).then(function (response) {
+                            console.log(response);
+                        }).catch(function (error) {
+                            console.log(error);
+                        })
                     } else {
-                        console.log('error submit!!');
                         return false;
                     }
                 });
