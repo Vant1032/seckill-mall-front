@@ -1,7 +1,7 @@
 import Axios from "axios";
 
 const axios = Axios.create({
-    baseURL: 'http://localhost:8082',
+    baseURL: 'http://localhost:8082/api',
     timeout: 300 * 1000,
     headers: {
         'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
