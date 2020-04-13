@@ -75,7 +75,8 @@
                         }).then(function (response) {
                             const data = response.data;
                             if (data.code === 0) {
-                                window.location.href = '/#/home';
+                                that.$store.isLogin = true;
+                                window.location.href = '/#/index';
                             } else if (!_.isEmpty(data.msg)) {
                                 that.$message(data.msg);
                             }

@@ -1,4 +1,5 @@
 import Axios from "axios";
+import _ from 'lodash';
 
 const axios = Axios.create({
     baseURL: 'http://localhost:8082/api',
@@ -8,7 +9,7 @@ const axios = Axios.create({
     },
     transformRequest: data => {
         let f = new FormData();
-        let array = Object.keys(data);
+        let array = Object.keys(_.defaultTo(data, {}));
         for (const x of array) {
             f.append(x, data[x]);
         }

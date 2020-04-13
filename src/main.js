@@ -21,6 +21,8 @@ axios.interceptors.response.use(function(response) {
   return response;
 }, function (error) {
   vue.$message("网络异常");
+  console.log(error);
+  vue.$message(error.message)
   return Promise.reject(error);
 });
 
