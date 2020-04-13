@@ -38,7 +38,7 @@
 </template>
 
 <script>
-    import axios from "../../../utils/net";
+    import axios from "../../../../utils/net";
     export default {
         name: 'SignInForm',
         data() {

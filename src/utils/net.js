@@ -13,7 +13,7 @@ const axios = Axios.create({
             f.append(x, data[x]);
         }
         return f;
-    }
+    },
 });
 
 export default axios;

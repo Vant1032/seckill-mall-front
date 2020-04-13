@@ -1,5 +1,7 @@
 import VueRouter from "vue-router";
+import Vue from "vue";
 
+Vue.use(VueRouter);
 
 const routes = [
     {
@@ -8,7 +10,11 @@ const routes = [
     },
     {
         path: '/login',
-        component: () => import('../views/login'),
+        component: () => import('../views/user/login'),
+    },
+    {
+        path: '/index',
+        component: () => import('../views/user/home'),
     }
 ];
 

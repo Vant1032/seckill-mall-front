@@ -22,7 +22,8 @@
 </template>
 
 <script>
-    import axios from "../../../utils/net";
+    import axios from "../../../../utils/net";
+    import _ from 'lodash';
 
     export default {
         name: 'LoginForm',
@@ -72,10 +73,13 @@
                             userName: form.userName,
                             password: form.pass
                         }).then(function (response) {
-                            console.log(response);
-                        }).catch(function (error) {
-                            console.log(error);
-                        })
+                            const data = response.data;
+                            if (data.code === 0) {
+                                window.location.href = '/#/home';
+                            } else if (!_.isEmpty(data.msg)) {
+                                that.$message(data.msg);
+                            }
+                        });
                     } else {
                         return false;
                     }
