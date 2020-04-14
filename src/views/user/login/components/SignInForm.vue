@@ -39,6 +39,7 @@
 
 <script>
     import axios from "../../../../utils/net";
+    import _ from "lodash";
     export default {
         name: 'SignInForm',
         data() {
@@ -110,7 +111,7 @@
         },
         methods: {
             submitForm(formName) {
-                var that = this;
+                let that = this;
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
                         const form = that.ruleForm;
@@ -120,9 +121,13 @@
                             sex: form.sex,
                             tel: form.tel
                         }).then(function (response) {
-                            console.log(response);
-                        }).catch(function (error) {
-                            console.log(error);
+                            const data = response.data;
+                            if (data.code === 0) {
+                                that.$store.isLogin = true;
+                                window.location.href = '/#/index';
+                            } else if (!_.isEmpty(data.msg)) {
+                                that.$message(data.msg);
+                            }
                         });
                     } else {
                         return false;
