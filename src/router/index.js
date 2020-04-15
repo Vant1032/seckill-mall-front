@@ -19,6 +19,14 @@ const routes = [
     {
         path: '/merchant/login',
         component: () => import('../views/merchant/login')
+    },
+    {
+        path: '/merchant/manage',
+        component: () => import('../views/merchant/manage')
+    },
+    {
+        path: '/merchant/createGoods',
+        component: () => import('../views/merchant/creategoods')
     }
 ];
 
