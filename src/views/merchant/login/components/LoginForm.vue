@@ -65,7 +65,7 @@
         methods: {
 
             submitForm(formName) {
-                var that = this;
+                const that = this;
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
                         const form = that.ruleForm;
@@ -76,7 +76,7 @@
                             const data = response.data;
                             if (data.code === 0) {
                                 that.$store.isLogin = true;
-                                // window.location.href = '/#/index';
+                                window.location.href = '/#/merchant/manage';
                             } else if (!_.isEmpty(data.msg)) {
                                 that.$message(data.msg);
                             }

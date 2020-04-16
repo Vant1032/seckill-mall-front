@@ -111,7 +111,7 @@
         },
         methods: {
             submitForm(formName) {
-                let that = this;
+                const that = this;
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
                         const form = that.ruleForm;

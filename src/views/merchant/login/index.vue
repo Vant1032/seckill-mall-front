@@ -13,8 +13,10 @@
     import LoginForm from "./components/LoginForm";
 
     export default {
-        name: 'Login',
-        components: {LoginForm},
+        name: 'MerchantLogin',
+        components: {
+            LoginForm
+        },
         data() {
             return {};
         },
