@@ -1,3 +1,4 @@
+<!--创建商品页-->
 <template>
     <el-container>
         <el-header>
@@ -80,7 +81,7 @@
                             descInfo: form.descInfo,
                             seckillTime: form.seckillTime,
                             imgUrl: form.imgUrl
-                        }).then(function (response) {
+                        }).then((response) => {
                             let rsp = response.data;
                             if (rsp.code === 0) {
                                 // 创建成功

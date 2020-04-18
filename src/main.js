@@ -8,7 +8,7 @@ import axios from "./utils/net";
 
 Vue.use(ElementUI);
 
-Vue.config.productionTip = false;
+Vue.config.productionTip = true;
 
 const vue = new Vue({
   router,
@@ -20,10 +20,25 @@ const vue = new Vue({
 axios.interceptors.response.use(function(response) {
   return response;
 }, function (error) {
-  vue.$message("网络异常");
-  console.log(error);
-  vue.$message(error.message)
+  console.log("以下是错误：")
+  console.log(error.response);
+  if (error.response) {
+    let rsp = error.response;
+    if (rsp.code !== 0) {
+      vue.$message(rsp.msg);
+    }
+  } else if (error.request) {
+    // The request was made but no response was received
+    // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+    // http.ClientRequest in node.js
+    vue.$message("未收到响应");
+  } else {
+    vue.$message("出错了：" + error.message)
+  }
   return Promise.reject(error);
 });
+
+vue.$store.backendBaseUrl='http://' + process.env.VUE_APP_BACKEND_URL + ':' + process.env.VUE_APP_BACKEND_PORT;
+
 
 vue.$mount('#app');

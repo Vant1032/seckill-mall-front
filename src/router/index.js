@@ -5,10 +5,6 @@ Vue.use(VueRouter);
 
 const routes = [
     {
-        path: '/test',
-        component: () => import('../components/TestComponent')
-    },
-    {
         path: '/login',
         component: () => import('../views/user/login'),
     },
@@ -26,7 +22,11 @@ const routes = [
     },
     {
         path: '/merchant/createGoods',
-        component: () => import('../views/merchant/creategoods')
+        component: () => import('../views/merchant/createGoods')
+    },
+    {
+        path: '/merchant/showGoods',
+        component: () => import('../views/merchant/showGoods')
     }
 ];
 

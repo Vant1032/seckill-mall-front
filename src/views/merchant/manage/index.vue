@@ -1,14 +1,17 @@
+<!--商家管理首页-->
 <template>
     <el-container>
         <el-header>
-
+            <merchant-header></merchant-header>
         </el-header>
         <el-main>
             <el-row>
                 <el-col :span="12">
-                    <router-link to="/merchant/createGoods">创建商品</router-link>
+                    <router-link to="/merchant/createGoods"><el-link type="primary">创建商品</el-link></router-link>
                 </el-col>
-                <el-col :span="12"></el-col>
+                <el-col :span="12">
+                    <router-link to="/merchant/showGoods"><el-link type="primary">查看商品</el-link></router-link>
+                </el-col>
             </el-row>
             <el-row>
                 <el-col :span="12"></el-col>
@@ -22,8 +25,13 @@
 </template>
 
 <script>
+    import MerchantHeader from '../../../components/merchant/Header'
+
     export default {
-        name: "Manage"
+        name: "Manage",
+        components: {
+            MerchantHeader
+        }
     }
 </script>
 

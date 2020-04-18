@@ -46,8 +46,8 @@
         },
         mounted() {
             axios.post('/goods/getGoodsList', {
-                startTime: utils.getTimeOfLastHour(),
-                endTime: utils.getTimeOfNextHour(),
+                startTime: utils.getTimeOfLastHour(new Date()),
+                endTime: utils.getTimeOfNextHour(new Date()),
             }).then((response) => {
                 let data = response.data;
                 if (data.code === 0) {

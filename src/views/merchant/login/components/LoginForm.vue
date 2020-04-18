@@ -1,4 +1,4 @@
-<!--注册页面-->
+<!--商家登录页面-->
 <template>
     <div style="width: 100%; height: 100%;">
         <div style="display: flex; align-content: center; justify-content: center;">

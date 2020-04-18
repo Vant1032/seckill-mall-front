@@ -1,4 +1,4 @@
-<!--注册及登录页面-->
+<!--登录页面-->
 <template>
     <div id="main-Pane">
         <el-tabs type="card">
