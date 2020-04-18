@@ -43,7 +43,7 @@
     export default {
         name: 'SignInForm',
         data() {
-            var checkUserName = (rule, value, callback) => {
+            let checkUserName = (rule, value, callback) => {
                 if (value === '') {
                     console.log(rule);
                     callback(new Error('用户名不能为空'));
@@ -51,7 +51,7 @@
                     callback();
                 }
             };
-            var validatePass = (rule, value, callback) => {
+            let validatePass = (rule, value, callback) => {
                 if (value === '') {
                     callback(new Error('请输入密码'));
                 } else {
@@ -61,7 +61,7 @@
                     callback();
                 }
             };
-            var validatePass2 = (rule, value, callback) => {
+            let validatePass2 = (rule, value, callback) => {
                 if (value === '') {
                     callback(new Error('请再次输入密码'));
                 } else if (value !== this.ruleForm.pass) {

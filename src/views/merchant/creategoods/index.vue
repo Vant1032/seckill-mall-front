@@ -1,6 +1,7 @@
 <template>
     <el-container>
         <el-header>
+            <merchant-header></merchant-header>
         </el-header>
         <el-main>
             <div>
@@ -23,8 +24,10 @@
                     <el-form-item label="图片">
                         <el-upload
                                 class="upload-demo"
-                                action="http://www.baidu.com"
+                                action="http://localhost:8082/api/admin/uploadImg"
                                 with-credentials
+                                :limit="1"
+                                :on-success="imageUploadSuccess"
                                 list-type="picture">
                             <el-button size="small" type="primary">点击上传</el-button>
                             <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
@@ -44,8 +47,14 @@
 </template>
 
 <script>
+    import axios from "../../../utils/net";
+    import MerchantHeader from '../../../components/merchant/Header'
+
     export default {
         name: "CreateGoods",
+        components: {
+            MerchantHeader
+        },
         data() {
             return {
                 createGoodsForm: {
@@ -61,13 +70,25 @@
         methods: {
             onSubmit(formName) {
                 const that = this;
-                const form = this.$refs[formName];
-                console.log(this.$refs);
-                form.validate((valid) => {
+                this.$refs[formName].validate((valid) => {
                     if (valid) {
-                        console.log(that);
-                        console.log(form.goodsName);
-                        console.log(form.descInfo);
+                        let form = that.createGoodsForm;
+                        axios.post('/admin/createGoods', {
+                            goodsName: form.goodsName,
+                            price: form.price,
+                            amount: form.amount,
+                            descInfo: form.descInfo,
+                            seckillTime: form.seckillTime,
+                            imgUrl: form.imgUrl
+                        }).then(function (response) {
+                            let rsp = response.data;
+                            if (rsp.code === 0) {
+                                // 创建成功
+                                this.$message("创建成功");
+                            } else {
+                                this.$message(rsp.msg);
+                            }
+                        });
                     } else {
                         return false;
                     }
@@ -76,6 +97,13 @@
             },
             resetForm(formName) {
                 this.$refs[formName].resetFields();
+            },
+            imageUploadSuccess(response) {
+                if (response.code === 0) {
+                    this.createGoodsForm.imgUrl = response.data.imageName;
+                } else {
+                    this.$message(response.msg);
+                }
             }
         }
     }

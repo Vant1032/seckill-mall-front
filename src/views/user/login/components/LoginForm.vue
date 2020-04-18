@@ -28,13 +28,13 @@
     export default {
         name: 'LoginForm',
         data() {
-            var validatePass = (rule, value, callback) => {
+            let validatePass = (rule, value, callback) => {
                 if (value === '') {
                     callback(new Error('请输入密码'));
                 }
                 callback();
             };
-            var validateUserName = (rule, value, callback) => {
+            let validateUserName = (rule, value, callback) => {
                 if (value === '') {
                     callback(new Error('请输入用户名'));
                 }
