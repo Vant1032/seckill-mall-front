@@ -23,16 +23,25 @@
                         <el-date-picker v-model="createGoodsForm.seckillTime" type="datetime" placeholder="选择日期时间"></el-date-picker>
                     </el-form-item>
                     <el-form-item label="图片">
-                        <el-upload
-                                class="upload-demo"
-                                action="http://localhost:8082/api/admin/uploadImg"
+                        <el-image
+                                v-if="isShowImagePreview"
+                                style="width: 100px; height: 100px"
+                                :src="imageUrl"
+                                :preview-src-list="[imageUrl]">
+                        </el-image>
+                        <el-button type="primary"
+                                   @click="imageCropperShow = true"
+                                   v-if="!isShowImagePreview"
+                        >上传</el-button>
+                        <image-cropper
+                                field="file"
+                                v-show="imageCropperShow"
+                                :url="goodsImgUploadApi"
+                                lang-type="zh"
                                 with-credentials
-                                :limit="1"
-                                :on-success="imageUploadSuccess"
-                                list-type="picture">
-                            <el-button size="small" type="primary">点击上传</el-button>
-                            <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
-                        </el-upload>
+                                @crop-upload-success="cropSuccess"
+                                @close="imageCropperShow = false"
+                        ></image-cropper>
                     </el-form-item>
                     <el-form-item>
                         <el-button type="primary" @click="onSubmit('createGoodsForm')">立即创建</el-button>
@@ -50,23 +59,48 @@
 <script>
     import axios from "../../../utils/net";
     import MerchantHeader from '../../../components/merchant/Header'
+    import utils from "../../../utils/utils";
+    import api from "../../../utils/api";
+    import ImageCropper from "../../../components/ImageCropper";
+    import _ from 'lodash';
 
     export default {
         name: "CreateGoods",
         components: {
-            MerchantHeader
+            MerchantHeader,
+            ImageCropper,
         },
         data() {
             return {
+                // 现在表单的数据
                 createGoodsForm: {
                     goodsName: '',
                     price: '',
                     amount: '',
                     descInfo: '',
                     seckillTime: new Date(),
-                    imgUrl: '',
-                }
+                    imgName: '',
+                },
+                // 是否显示图片裁剪
+                imageCropperShow: false,
+                // 上传的api全路径
+                goodsImgUploadApi: utils.fullApiUrl(api.adminUploadImg),
             };
+        },
+        computed: {
+            // 显示图片缩略图的url
+            imageUrl() {
+                if (_.isEmpty(this.createGoodsForm.imgName)) {
+                    return '';
+                }
+                return utils.imgFullUrl(this.createGoodsForm.imgName);
+            },
+            isShowImagePreview() {
+                if (_.isEmpty(this.createGoodsForm.imgName)) {
+                    return false;
+                }
+                return true;
+            }
         },
         methods: {
             onSubmit(formName) {
@@ -80,15 +114,11 @@
                             amount: form.amount,
                             descInfo: form.descInfo,
                             seckillTime: form.seckillTime,
-                            imgUrl: form.imgUrl
+                            imgName: form.imgName
                         }).then((response) => {
-                            let rsp = response.data;
-                            if (rsp.code === 0) {
-                                // 创建成功
-                                this.$message("创建成功");
-                            } else {
-                                this.$message(rsp.msg);
-                            }
+                            utils.handleRsp(response.data, that.$message, () => {
+                                that.$message("创建成功");
+                            })
                         });
                     } else {
                         return false;
@@ -99,12 +129,11 @@
             resetForm(formName) {
                 this.$refs[formName].resetFields();
             },
-            imageUploadSuccess(response) {
-                if (response.code === 0) {
-                    this.createGoodsForm.imgUrl = response.data.imageName;
-                } else {
-                    this.$message(response.msg);
-                }
+            cropSuccess(response) {
+                let that = this;
+                utils.handleRsp(response, this.$message, (rspData) => {
+                    that.createGoodsForm.imgName = rspData.imageName;
+                });
             }
         }
     }

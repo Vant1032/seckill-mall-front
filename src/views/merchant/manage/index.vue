@@ -10,7 +10,7 @@
                     <router-link to="/merchant/createGoods"><el-link type="primary">创建商品</el-link></router-link>
                 </el-col>
                 <el-col :span="12">
-                    <router-link to="/merchant/showGoods"><el-link type="primary">查看商品</el-link></router-link>
+                    <router-link to="/merchant/showGoods"><el-link type="primary">编辑商品</el-link></router-link>
                 </el-col>
             </el-row>
             <el-row>

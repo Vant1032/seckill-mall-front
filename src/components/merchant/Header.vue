@@ -19,22 +19,32 @@
 </template>
 
 <script>
+    import axios from "../../utils/net";
+    import api from "../../utils/api";
+    import error from "../../utils/error";
+
     export default {
         name: "MerchantHeader",
         computed: {
             isLogin() {
-                console.log("isLogin :" + this.$store.state.isLogin)
                 return this.$store.state.isLogin;
             }
         },
         methods: {
             loginOut() {
                 this.$store.commit('setIsLogin', false);
-                console.log("loginOut: " + this.$store.state.isLogin);
             }
         },
         created() {
-
+            axios.post(api.adminGetLoginStatus, {
+            }).then(response => {
+                let rsp = response.data;
+                if (rsp.code === 0) {
+                    this.$store.commit('setIsLogin', true);
+                } else if (rsp.code === error.NOT_LOGIN) {
+                    this.$store.commit('setIsLogin', false);
+                }
+            });
         }
     }
 </script>

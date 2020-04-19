@@ -38,7 +38,7 @@ axios.interceptors.response.use(function(response) {
   return Promise.reject(error);
 });
 
-vue.$store.backendBaseUrl='http://' + process.env.VUE_APP_BACKEND_URL + ':' + process.env.VUE_APP_BACKEND_PORT;
+vue.$store.state.backendBaseUrl='http://' + process.env.VUE_APP_BACKEND_URL + ':' + process.env.VUE_APP_BACKEND_PORT;
 
 
 vue.$mount('#app');

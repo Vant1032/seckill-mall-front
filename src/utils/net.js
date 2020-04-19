@@ -9,6 +9,9 @@ const axios = Axios.create({
     },
     withCredentials: true,
     transformRequest: data => {
+        if (data instanceof FormData) {
+            return data;
+        }
         let f = new FormData();
         let array = Object.keys(_.defaultTo(data, {}));
         for (const x of array) {
