@@ -23,6 +23,13 @@
                         size="mini"
                         @click="handleEdit(scope.row.goodsId)">编辑
                 </el-button>
+                <el-dialog title="收货地址" :visible.sync="dialogFormVisible">
+                    <el-table :data="editTable">
+                        <el-table-column property="date" label="日期" width="150"></el-table-column>
+                        <el-table-column property="name" label="姓名" width="200"></el-table-column>
+                        <el-table-column property="address" label="地址"></el-table-column>
+                    </el-table>
+                </el-dialog>
                 <el-button
                         size="mini"
                         type="danger"
@@ -41,7 +48,9 @@
         name: "ShowGoodsComponent",
         data() {
             return {
-                goodsList: []
+                goodsList: [],
+                dialogFormVisible: false,
+                editTable: {},
             };
         },
         computed: {},
@@ -51,6 +60,7 @@
         methods: {
             handleEdit(goodsId) {
                 console.log(goodsId);
+                this.dialogFormVisible = true;
             },
             handleDelete(goodsId) {
                 axios.post('/admin/deleteGoods', {

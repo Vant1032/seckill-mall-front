@@ -75,7 +75,7 @@
                         }).then(function (response) {
                             const data = response.data;
                             if (data.code === 0) {
-                                that.$store.isLogin = true;
+                                that.$store.commit('setIsLogin', true);
                                 window.location.href = '/#/merchant/manage';
                             } else if (!_.isEmpty(data.msg)) {
                                 that.$message(data.msg);

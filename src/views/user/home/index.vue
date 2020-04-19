@@ -39,7 +39,7 @@
         name: "Home",
         data: function () {
             return {
-                isLogin: this.$store.isLogin,
+                isLogin: this.$store.state.isLogin,
             };
         },
         computed: {
