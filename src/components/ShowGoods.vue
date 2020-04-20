@@ -150,14 +150,11 @@
                 return utils.imgFullUrl(imageName);
             },
             loadGoodsList() {
-                axios.post('/goods/getGoodsList', {
-                    startTime: new Date(),
-                    endTime: utils.getNextDayStartTime(new Date())
+                axios.post(api.adminGetAllGoods, {
                 }).then((response) => {
                     let rsp = response.data;
                     if (rsp.code === 0) {
                         this.goodsList = rsp.data;
-
                     } else {
                         this.$message(rsp.msg);
                     }
@@ -168,7 +165,7 @@
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
                         let form = that.modifyGoodsForm;
-                        axios.post(api.modifyGoods, {
+                        axios.post(api.adminModifyGoods, {
                             goodsId: form.goodsId,
                             goodsName: form.goodsName,
                             price: form.price,

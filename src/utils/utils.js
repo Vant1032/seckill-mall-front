@@ -1,6 +1,7 @@
 import _ from "lodash";
 
 function getTimeOfLastHour(date) {
+    date.setMinutes(0);
     date.setSeconds(0);
     date.setMilliseconds(0);
     return date;
@@ -8,6 +9,7 @@ function getTimeOfLastHour(date) {
 
 function getTimeOfNextHour(date) {
     date.setHours(date.getHours() + 1);
+    date.setMinutes(0);
     date.setSeconds(0);
     date.setMilliseconds(0);
     return date;

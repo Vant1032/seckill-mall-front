@@ -1,33 +1,32 @@
 <template>
     <el-container>
-        <el-header style="background-color: #E3E4E5">
-            <el-row class="full" type="flex" align="middle">
-                <el-col :span="12">
-                    <div>秒杀商城</div>
-                </el-col>
-                <el-col :span="12" style="display: flex; justify-content: center">
-                    <div class="full" v-if="!isLogin">
-                        <router-link to="/login">登录/注册</router-link>
-                    </div>
-                </el-col>
-            </el-row>
+        <el-header>
+            <user-header></user-header>
         </el-header>
-        <el-main style="background-color: #2D93CA">
+        <el-main>
             <el-container>
-                <el-header>
-                    <el-tabs>
+                <el-main>
+                    <el-tabs value="first">
                         <!-- 指定品类目录 -->
                         <el-tab-pane label="秒杀商品" name="first">
-
+                            <goods-list-component :goods-list="goodsList"></goods-list-component>
                         </el-tab-pane>
                     </el-tabs>
-                </el-header>
-                <el-main>
-
                 </el-main>
+                <el-footer>
+                    <el-pagination
+                            background
+                            layout="prev, pager, next"
+                            :page-size="pageSize"
+                            @current-change="loadData"
+                            :total="totalGoods"
+                            :current-page.sync="currentPage"
+                    >
+                    </el-pagination>
+                </el-footer>
             </el-container>
         </el-main>
-        <el-footer style="background-color: #42b983">
+        <el-footer>
         </el-footer>
     </el-container>
 </template>
@@ -35,34 +34,49 @@
 <script>
     import axios from "../../../utils/net";
     import utils from "../../../utils/utils";
+    import UserHeader from "../../../components/user/Header"
+    import GoodsListComponent from "./components/GoodsListComponent";
+    import api from "../../../utils/api";
+
     export default {
         name: "Home",
+        components: {
+            GoodsListComponent,
+            UserHeader,
+        },
         data: function () {
             return {
                 isLogin: this.$store.state.isLogin,
+                fullscreenLoading: true,
+                goodsList: [],
+                pageSize: 12,
+                currentPage: 1,
+                // 回传的告诉首页用于分页用的总共多少个goods
+                totalGoods: 0,
             };
         },
         computed: {
         },
+        methods: {
+            loadData() {
+                axios.post(api.getGoodsList, {
+                    currentPage: this.currentPage,
+                    pageSize: this.pageSize,
+                    startTime: utils.getTimeOfLastHour(new Date()),
+                    endTime: utils.getTimeOfNextHour(new Date()),
+                }).then((response) => {
+                    utils.handleRsp(response.data, this.$message, (data) => {
+                        this.goodsList = data.goodsList;
+                        this.totalGoods = data.total;
+                    });
+                });
+            }
+        },
         mounted() {
-            axios.post('/goods/getGoodsList', {
-                startTime: utils.getTimeOfLastHour(new Date()),
-                endTime: utils.getTimeOfNextHour(new Date()),
-            }).then((response) => {
-                let data = response.data;
-                if (data.code === 0) {
-                    this.$store.goodsList = data.data;
-                } else {
-                    this.$message(data.msg);
-                }
-            })
+            this.loadData();
         }
     }
 </script>
 
 <style scoped>
-    .full1 {
-        height: 100%;
-        width: 100%;
-    }
 </style>
