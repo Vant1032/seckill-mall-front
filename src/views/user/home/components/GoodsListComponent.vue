@@ -1,7 +1,7 @@
 <template>
     <el-container>
         <el-main>
-            <el-row v-for="row in rowedGoodsList" :key="row.id" >
+            <el-row gutter="10" v-for="row in rowedGoodsList" :key="row.id" >
                 <el-col v-for="goods in row.goodsList" :key="goods.goodsId" :span="row.colSpan">
                     <goods-card-component :goods="goods"></goods-card-component>
                 </el-col>
