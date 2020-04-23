@@ -6,7 +6,18 @@
 
 <script>
     export default {
-        name: "GoodsDetail"
+        name: "GoodsDetail",
+        data() {
+            return {
+
+            };
+        },
+        methods: {
+
+        },
+        mounted() {
+
+        },
     }
 </script>
 

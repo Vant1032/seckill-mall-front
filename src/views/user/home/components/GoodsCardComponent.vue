@@ -9,7 +9,9 @@
                 <div style="font-size: 1.5em;"><span style="display: inline-block; height: 100%; line-height: 200%">¥ {{ goods.price }}</span>
                 </div>
                 <div><span>仅剩{{ goods.amount }}件</span></div>
-                <el-button round type="danger" style="vertical-align: center" @click="toGoodsDetails">立即抢购</el-button>
+                <el-button round type="danger" style="vertical-align: center">
+                    <router-link to="/goods/detail" style="color: inherit;">立即抢购</router-link>
+                </el-button>
             </div>
         </el-main>
         <el-footer>
@@ -34,10 +36,7 @@
             }
         },
         methods: {
-            toGoodsDetails() {
-                window.location.href = '/#/goods/detail'
-            }
-        }
+        },
     }
 </script>
 
