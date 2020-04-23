@@ -10,7 +10,7 @@
                 </div>
                 <div><span>仅剩{{ goods.amount }}件</span></div>
                 <el-button round type="danger" style="vertical-align: center">
-                    <router-link to="/goods/detail" style="color: inherit;">立即抢购</router-link>
+                    <router-link :to="to" style="color: inherit;">立即抢购</router-link>
                 </el-button>
             </div>
         </el-main>
@@ -33,7 +33,15 @@
         computed: {
             goodsUrl() {
                 return utils.imgFullUrl(this.goods.imgName);
-            }
+            },
+            to() {
+                return {
+                    path: '/goods/detail',
+                    query: {
+                        goodsId: this.goods.goodsId
+                    }
+                };
+            },
         },
         methods: {
         },

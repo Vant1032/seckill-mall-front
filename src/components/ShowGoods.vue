@@ -113,7 +113,7 @@
         methods: {
             handleEdit(goodsId) {
                 let that = this;
-                axios.post('/goods/getGoodsById', {
+                axios.post(api.getGoodsById, {
                     goodsId
                 }).then((response) => {
                     const rsp = response.data;

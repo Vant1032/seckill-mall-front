@@ -13,4 +13,5 @@ export default {
 
     // other,all user can use
     getGoodsList: '/goods/getGoodsList',
+    getGoodsById: '/goods/getGoodsById',
 }
