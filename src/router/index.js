@@ -38,6 +38,21 @@ const routes = [
         name: 'userGoodsDetail',
         path: '/goods/detail',
         component: () => import('../views/user/goodsDetail')
+    },
+    {
+        name: 'userOrderCreate',
+        path: '/user/order/create',
+        component: () => import('../views/user/order/UserOrderCreate')
+    },
+    {
+        name: 'userInfo',
+        path: '/user/info',
+        component: () => import('../views/user/UserInfo')
+    },
+    {
+        name: 'userCreateReceiveAddress',
+        path: '/user/createReceiveAddress',
+        component: () => import('../views/user/ReceiveAddress/CreateReceiveAddress')
     }
 ];
 

@@ -10,6 +10,8 @@ export default {
     // user
     userGetLoginStatus: '/user/getLoginStatus',
     userLoginOut: '/user/loginOut',
+    userGetAllReceiveAddress: '/user/getAllReceiveAddress',
+    userCreateReceiveAddress: '/user/createReceiveAddress',
 
     // other,all user can use
     getGoodsList: '/goods/getGoodsList',

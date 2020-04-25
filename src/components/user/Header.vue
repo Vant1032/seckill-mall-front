@@ -8,10 +8,21 @@
                     </router-link>
                 </el-col>
                 <el-col :span="12">
-                    <router-link to="/login">
-                        <el-link type="primary" v-if="isUserLogin" @click="loginOut">退出登录</el-link>
-                        <el-link type="primary" v-if="!isUserLogin">登录/注册</el-link>
-                    </router-link>
+                    <el-row>
+                        <el-col :span="12">
+                            <el-link type="primary">
+                                <router-link to="/user/info" v-if="isUserLogin" style="color: inherit;">
+                                    个人中心
+                                </router-link>
+                            </el-link>
+                        </el-col>
+                        <el-col :span="12">
+                            <router-link to="/login">
+                                <el-link type="primary" v-if="isUserLogin" @click="loginOut">退出登录</el-link>
+                                <el-link type="primary" v-if="!isUserLogin">登录/注册</el-link>
+                            </router-link>
+                        </el-col>
+                    </el-row>
                 </el-col>
             </el-row>
         </el-main>

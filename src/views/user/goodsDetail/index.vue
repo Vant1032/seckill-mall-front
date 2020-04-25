@@ -33,7 +33,9 @@
                                     加入收藏夹
                                 </el-button>
                                 <el-button>
-                                    立即购买
+                                    <router-link :to="to" style="color: inherit">
+                                        立即购买
+                                    </router-link>
                                 </el-button>
                             </div>
 
@@ -80,7 +82,15 @@
         computed: {
             goodsUrl() {
                 return utils.imgFullUrl(this.goods.imgName);
-            }
+            },
+            to() {
+                return {
+                    path: '/user/order/create',
+                    query: {
+                        goodsId: this.goods.goodsId
+                    }
+                };
+            },
         },
         methods: {
             loadData() {
