@@ -65,7 +65,7 @@
             },
             deleteReceiveAddress(addrId) {
                 let that = this;
-                axios.post(api.deleteReceiveAddress, {
+                axios.post(api.userDeleteReceiveAddress, {
                     addrId
                 }).then(response => utils.handleRsp(response.data, that.$message, () => {
                     that.loadData();

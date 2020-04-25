@@ -12,7 +12,9 @@ export default {
     userLoginOut: '/user/loginOut',
     userGetAllReceiveAddress: '/user/getAllReceiveAddress',
     userCreateReceiveAddress: '/user/createReceiveAddress',
-    deleteReceiveAddress: '/user/deleteReceiveAddress',
+    userDeleteReceiveAddress: '/user/deleteReceiveAddress',
+    userModifyUserAvatar: '/user/modifyUserAvatar',
+    userGetAvatar: '/user/getAvatar',
 
 
     // other,all user can use

@@ -188,7 +188,6 @@
                 this.modifyGoodsFormVisible = false;
             },
             cropSuccess(response) {
-                console.log(response);
                 let that = this;
                 utils.handleRsp(response, this.$message, (rspData) => {
                     that.modifyGoodsForm.imgUrl = that.generateImageUrl(rspData.imageName);
