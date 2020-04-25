@@ -53,7 +53,12 @@ const routes = [
         name: 'userCreateReceiveAddress',
         path: '/user/createReceiveAddress',
         component: () => import('../views/user/ReceiveAddress/CreateReceiveAddress')
-    }
+    },
+    {
+        name: 'userDeleteReceiveAddress',
+        path: '/user/DeleteReceiveAddress',
+        component: () => import('../views/user/ReceiveAddress/DeleteReceiveAddress')
+    },
 ];
 
 const router = new VueRouter({

@@ -12,6 +12,8 @@ export default {
     userLoginOut: '/user/loginOut',
     userGetAllReceiveAddress: '/user/getAllReceiveAddress',
     userCreateReceiveAddress: '/user/createReceiveAddress',
+    deleteReceiveAddress: '/user/deleteReceiveAddress',
+
 
     // other,all user can use
     getGoodsList: '/goods/getGoodsList',

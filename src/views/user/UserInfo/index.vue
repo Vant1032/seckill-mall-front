@@ -10,6 +10,11 @@
                     新增收货地址
                 </router-link>
             </el-button>
+            <el-button type="danger">
+                <router-link to="/user/deleteReceiveAddress" style="color: inherit;">
+                    删除收货地址
+                </router-link>
+            </el-button>
         </el-main>
     </el-container>
 </template>
