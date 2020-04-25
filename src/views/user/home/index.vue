@@ -62,8 +62,10 @@
                 axios.post(api.getGoodsList, {
                     currentPage: this.currentPage,
                     pageSize: this.pageSize,
-                    startTime: utils.getTimeOfLastHour(new Date()),
-                    endTime: utils.getTimeOfNextHour(new Date()),
+                    // startTime: utils.getTimeOfLastHour(new Date()),
+                    startTime: new Date(2020, 1, 1, 0, 0, 0, 0),
+                    // endTime: utils.getTimeOfNextHour(new Date()),
+                    endTime: new Date(2030, 1, 1, 0, 0, 0, 0),
                 }).then((response) => {
                     utils.handleRsp(response.data, this.$message, (data) => {
                         this.goodsList = data.goodsList;
