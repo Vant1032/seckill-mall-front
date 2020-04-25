@@ -25,7 +25,7 @@
                 </el-button>
 
                 <!--        弹出的内容        -->
-                <el-dialog title="收货地址" :visible.sync="modifyGoodsFormVisible">
+                <el-dialog title="编辑商品" :visible.sync="modifyGoodsFormVisible">
                     <el-form ref="modifyGoodsForm" :model="modifyGoodsForm" label-width="100px">
                         <el-form-item label="商品名" prop="goodsName">
                             <el-input v-model="modifyGoodsForm.goodsName"></el-input>
