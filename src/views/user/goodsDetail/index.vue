@@ -57,6 +57,7 @@
     import api from "../../../utils/api";
     import utils from "../../../utils/utils";
     import UserHeader from "../../../components/user/Header"
+    import consts from "../../../utils/consts";
 
     export default {
         name: "GoodsDetail",
@@ -68,7 +69,7 @@
                 goods: {
                     goodsId: 0,
                     goodsName: '',
-                    imgName: 'loading.jpg',
+                    imgName: consts.LOADING_IMG_NAME,
                     price: '',
                     amount: '',
                     descInfo: '',
