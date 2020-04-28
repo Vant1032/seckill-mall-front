@@ -12,7 +12,7 @@
                 <el-col :span="8">
                     <el-form ref="orderForm" :model="orderForm">
                         <el-form-item label="收货地址" required class="left">
-                            <el-select v-model="orderForm.address" placeholder="请选择收货地址">
+                            <el-select v-model="orderForm.addrId" placeholder="请选择收货地址">
                                 <el-option :label="item.receiverName+' '+item.province+item.city+item.county+item.detailAddr"
                                            :value="item.addrId" v-for="item in receiveAddressList" :key="item.addrId">
                                 </el-option>
@@ -67,6 +67,18 @@
         methods: {
             submit() {
                 this.$message("提交订单成功");
+                let that = this;
+                let orders = [];
+                orders.push({
+                    goodsId: this.goods.goodsId,
+                    amount: this.goods.amount,
+                });
+                axios.post(api.orderCreate, {
+                    addrId: this.orderForm.addrId,
+                    orders,
+                }).then(response => utils.handleRsp(response.data, that.$message, () => {
+
+                }));
                 this.$router.push("/index");
             },
             loadData() {

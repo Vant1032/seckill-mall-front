@@ -16,8 +16,8 @@ export default {
     userModifyUserAvatar: '/user/modifyUserAvatar',
     userGetAvatar: '/user/getAvatar',
 
-
     // other,all user can use
     getGoodsList: '/goods/getGoodsList',
     getGoodsById: '/goods/getGoodsById',
+    orderCreate: '/order/create',
 }
