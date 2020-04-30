@@ -2,7 +2,7 @@
 <template>
     <div style="width: 100%; height: 100%;">
         <div style="display: flex; align-content: center; justify-content: center;">
-            <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px" class="login-form">
+            <el-form :model="ruleForm" status-icon :rules="rules" label-width="100px" class="login-form">
                 <div class="title-container">
                     <h3 class="title">用户注册</h3>
                 </div>
@@ -45,7 +45,6 @@
         data() {
             let checkUserName = (rule, value, callback) => {
                 if (value === '') {
-                    console.log(rule);
                     callback(new Error('用户名不能为空'));
                 } else {
                     callback();
@@ -56,7 +55,7 @@
                     callback(new Error('请输入密码'));
                 } else {
                     if (this.ruleForm.checkPass !== '') {
-                        this.$refs.ruleForm.validateField('checkPass');
+                        this.ruleForm.validateField('checkPass');
                     }
                     callback();
                 }

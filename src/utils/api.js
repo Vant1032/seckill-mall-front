@@ -15,6 +15,7 @@ export default {
     userDeleteReceiveAddress: '/user/deleteReceiveAddress',
     userModifyUserAvatar: '/user/modifyUserAvatar',
     userGetAvatar: '/user/getAvatar',
+    userChangePassword: '/user/changePassword',
 
     // other,all user can use
     getGoodsList: '/goods/getGoodsList',

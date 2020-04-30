@@ -19,23 +19,35 @@
                 编辑头像
             </el-button>
             <upload-avatar v-if="isVisible" @close="isVisible=false"></upload-avatar>
+            <el-button type="success" @click="isShowChangePassword=true">
+                修改密码
+            </el-button>
+            <el-button type="success">
+                查看订单
+            </el-button>
         </el-main>
+        <el-footer>
+            <change-user-password :visible="isShowChangePassword" @close="isShowChangePassword=false"></change-user-password>
+        </el-footer>
     </el-container>
 </template>
 
 <script>
     import UserHeader from "../../../components/user/Header"
     import UploadAvatar from "./UploadAvatar";
+    import ChangeUserPassword from "./ChangeUserPassword";
 
     export default {
         name: "UserInfo",
         components: {
             UserHeader,
-            UploadAvatar
+            UploadAvatar,
+            ChangeUserPassword,
         },
         data() {
             return {
                 isVisible: false,
+                isShowChangePassword: false,
             };
         }
     }
