@@ -35,6 +35,19 @@ const routes = [
         component: () => import('../views/merchant/showGoods')
     },
     {
+        name: 'merchantShowWaitShippingOrder',
+        path: '/merchant/ShowWaitShippingOrder',
+        component: () => import('../views/merchant/order/ShowWaitShippingOrder')
+    },
+    {
+        name: 'merchantShowWaitSignOrder',
+        path: '/merchant/ShowWaitSignOrder',
+        component: () => import('../views/merchant/order/ShowWaitSignOrder')
+    },
+
+
+
+    {
         name: 'userGoodsDetail',
         path: '/goods/detail',
         component: () => import('../views/user/goodsDetail')
@@ -58,6 +71,11 @@ const routes = [
         name: 'userDeleteReceiveAddress',
         path: '/user/DeleteReceiveAddress',
         component: () => import('../views/user/ReceiveAddress/DeleteReceiveAddress')
+    },
+    {
+        name: 'userShowAllOrder',
+        path: '/user/ShowAllOrder',
+        component: () => import('../views/user/order/ShowAllOrder')
     },
 ];
 

@@ -23,7 +23,9 @@
                 修改密码
             </el-button>
             <el-button type="success">
-                查看订单
+                <router-link to="/user/ShowAllOrder" class="link">
+                    查看订单
+                </router-link>
             </el-button>
         </el-main>
         <el-footer>

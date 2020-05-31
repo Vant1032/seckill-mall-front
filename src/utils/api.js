@@ -6,6 +6,8 @@ export default {
     adminUploadImg: '/admin/uploadImg',
     adminGetLoginStatus: '/admin/getLoginStatus',
     adminGetAllGoods: '/admin/getAllGoods',
+    adminShowOrder: '/admin/showOrder',
+    adminDeliverGoods: '/admin/deliverGoods',
 
     // user
     userGetLoginStatus: '/user/getLoginStatus',
@@ -16,6 +18,8 @@ export default {
     userModifyUserAvatar: '/user/modifyUserAvatar',
     userGetAvatar: '/user/getAvatar',
     userChangePassword: '/user/changePassword',
+    userShowAllOrder: '/order/userShowAllOrder',
+    userPayOrder: '/order/userPayOrder',
 
     // other,all user can use
     getGoodsList: '/goods/getGoodsList',

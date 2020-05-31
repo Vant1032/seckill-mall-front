@@ -88,6 +88,18 @@ function defaultString(string, defaultVal) {
     return string;
 }
 
+let statusMap = new Map();
+statusMap
+    .set('CANCEL', '已取消')
+    .set('WAIT_PAY', '待付款')
+    .set('WAIT_SHIPPING', '待发货')
+    .set('SHIPPED', '已发货')
+    .set('WAIT_SIGN', '待签收');
+
+function transferOrderStatus(status) {
+    return statusMap.get(status);
+}
+
 export default {
     getTimeOfLastHour,
     getTimeOfNextHour,
@@ -99,4 +111,5 @@ export default {
     stringToDate,
     dateToString,
     defaultString,
+    transferOrderStatus,
 }
