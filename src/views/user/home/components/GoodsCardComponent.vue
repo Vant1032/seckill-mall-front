@@ -9,6 +9,7 @@
                 <div style="font-size: 1.5em;"><span style="display: inline-block; height: 100%; line-height: 200%">¥ {{ goods.price }}</span>
                 </div>
                 <div><span>仅剩{{ goods.amount }}件</span></div>
+                <el-tag type="warning">{{ tip }}</el-tag>
                 <el-button round type="danger" style="vertical-align: center">
                     <router-link :to="to" style="color: inherit;">立即抢购</router-link>
                 </el-button>
@@ -30,6 +31,12 @@
                 required: true,
             }
         },
+        data() {
+            return {
+                timer: null,
+                tip: '',
+            };
+        },
         computed: {
             goodsUrl() {
                 return utils.imgFullUrl(this.goods.imgName);
@@ -44,6 +51,24 @@
             },
         },
         methods: {
+        },
+        created() {
+            let that = this;
+            this.timer = setInterval(function () {
+                let seckillTime = new Date(that.goods.seckillTime);
+                let gap = seckillTime.getTime() - new Date().getTime();
+                if (gap < 0) {
+                    that.tip = '秒杀已开始';
+                    return;
+
+                }
+                that.tip = '仅剩' + utils.numToTime(gap);
+            }, 200);
+        },
+        beforeDestroy() {
+            if (this.timer) {
+                clearInterval(this.timer);
+            }
         },
     }
 </script>

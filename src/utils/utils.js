@@ -58,6 +58,21 @@ function dateToString(date) {
 }
 
 /**
+ * 数字(毫秒数)转成时分秒毫秒的格式
+ * @param num
+ */
+function numToTime(num) {
+    let hour = parseInt(num / (60 * 60 * 1000));
+    num %= (60 * 60 * 1000);
+    let minutes = parseInt(num / (60 * 1000));
+    num %= (60 * 1000);
+    let seconds = parseInt(num / 1000);
+    num %= 1000;
+    let milliseconds = num;
+    return hour + ':' + minutes + ':' + seconds + '.' + milliseconds;
+}
+
+/**
  * @param string yyyy-MM-dd HH:mm:ss格式的字符串
  * @returns {Date}
  */
@@ -112,4 +127,5 @@ export default {
     dateToString,
     defaultString,
     transferOrderStatus,
+    numToTime,
 }

@@ -66,20 +66,20 @@
         computed: {},
         methods: {
             submit() {
-                this.$message("提交订单成功");
                 let that = this;
                 let orders = [];
                 orders.push({
                     goodsId: this.goods.goodsId,
-                    amount: this.goods.amount,
+                    amount: 1,
                 });
                 axios.post(api.orderCreate, {
                     addrId: this.orderForm.addrId,
                     orders,
-                }).then(response => utils.handleRsp(response.data, that.$message, () => {
-
+                }).then(response => utils.handleRsp(response.data, that.$message, (rspData) => {
+                    console.log(rspData);
+                    this.$message("提交订单成功");
+                    this.$router.push("/index");
                 }));
-                this.$router.push("/index");
             },
             loadData() {
                 let that = this;
