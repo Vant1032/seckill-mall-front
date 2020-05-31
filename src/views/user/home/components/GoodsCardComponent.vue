@@ -11,7 +11,8 @@
                 <div><span>仅剩{{ goods.amount }}件</span></div>
                 <el-tag type="warning">{{ tip }}</el-tag>
                 <el-button round type="danger" style="vertical-align: center">
-                    <router-link :to="to" style="color: inherit;">立即抢购</router-link>
+                    <router-link :to="to" v-if="!disabled" style="color: inherit;">立即抢购</router-link>
+                    <span v-if="disabled">等待秒杀</span>
                 </el-button>
             </div>
         </el-main>
@@ -35,6 +36,7 @@
             return {
                 timer: null,
                 tip: '',
+                disabled: false,
             };
         },
         computed: {
@@ -59,10 +61,11 @@
                 let gap = seckillTime.getTime() - new Date().getTime();
                 if (gap < 0) {
                     that.tip = '秒杀已开始';
+                    that.disabled = false;
                     return;
-
                 }
                 that.tip = '仅剩' + utils.numToTime(gap);
+                that.disabled = true;
             }, 200);
         },
         beforeDestroy() {
